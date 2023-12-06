@@ -1,9 +1,13 @@
+/**
+@author: Arka B23120
+*/
+
 #include <ESP8266WiFi.h>
 #include <ESPAsyncWebSrv.h>
 #include <math.h>
 
 const char *ssid = "_void>"; // put wifi name here
-const char *password = "arka2004";
+const char *password = "<your pwd>"; //put wifi pwd here
 int x=0, y=0;
 
 #define echo1 D8
@@ -18,6 +22,10 @@ int x=0, y=0;
 #define in4 D3
 #define en34 D4
 
+// the above defined are pins for esp8266; you can use GPIO notation too
+// due to the lack of pins, we are using same pin for in1 and in3; same for in2 and in4
+// not an issue since all wheels rotate in the same direction in this code
+
 long duration; // in ms
 long duration_side;
 float front_distance;
@@ -28,7 +36,8 @@ float theta = 0;
 float thetapersec = 27; //degrees
 float vel = 5;
 
-int right_c = 0, left_c = 0;
+int right_c = 0, left_c = 0; 
+// counters for filtering out random left/right turns; this is VERY important if you want to have somewhat accurate theta
 
 long t1,t2;
 
@@ -71,7 +80,7 @@ void wifi_init(){
   Serial.println(ip);
   Serial.println("***************************************");
 
-  // Define server routes
+  // Define server routes -> send the putput of fetch() with status code 200 each time server receives a request
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
     request->send(200, "text/plain", fetch());
   });
@@ -120,6 +129,8 @@ void forward(){
   left_c = 0;
   analogWrite(en12, 255);
   analogWrite(en34, 250);
+  // different values of enA and enB since our motors had different speeds at full power -> it was turning to a side insteadd of going forward
+  // adjust values until it moves straight
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
   t1 = millis();
@@ -169,6 +180,7 @@ void loop(){
     stop();
     Serial.println("ACHIEVED");
   } 
+  // setup threshold distances based on requirements
   else if (getFrontDist() >= 15){
     float side = getSideDist();
     if (side >= 10){
