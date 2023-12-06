@@ -10,9 +10,3 @@
 ## Tutors:
 > 1. Aditya Sharma
 > 2. Chetan Kukreja
-
-
-## Code Structure:
-**to be updated**
-
-**main.py under development**
