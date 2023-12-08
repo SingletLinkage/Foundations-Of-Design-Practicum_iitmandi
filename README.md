@@ -26,13 +26,13 @@ As an alternate system, [this script](./scripts/is_convex.py) uses another metho
 ### ESPCode.ino:
 > Libraries used: *[ESPAsyncWebSrv](https://reference.arduino.cc/reference/en/libraries/espasyncwebsrv/)*, *[ESP8266WiFi](https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/readme.html)*, and *math*
 
-This code uses time interval between two successive right/left turn calls to determine angle rotated (**theta = angular velocity * time**). Note that the value of angular velocity (<thetapersec>) is solely determined by experiments, not by theoretical calulations. Counters (*<right_c>, <left_c>*) are to filter out rouge left/right turn calls when the robot goes slightly out of the permissible distance range. It also determines the x,y coordinates of the robot using **x += v * cos theta** and **y += v * sin theta**. Again, the value of *v* is kind of random because we did not need accurate value of *v*. Then, the ESP runs a server which sends *(x,y)* coordicates and *theta* values whenever a request is sent to it.
+This code uses time interval between two successive right/left turn calls to determine angle rotated (`theta = angular velocity * time`). Note that the value of angular velocity (`thetapersec`) is solely determined by experiments, not by theoretical calulations. Counters (`right_c, left_c`) are to filter out rouge left/right turn calls when the robot goes slightly out of the permissible distance range. It also determines the x,y coordinates of the robot using `x += v * cos theta` and `y += v * sin theta`. Again, the value of `v` is kind of random because we did not need accurate value of `v`. Then, the ESP runs a server which sends `(x,y)` coordicates and `theta` values whenever a request is sent to it.
 
 ### Python Scripts:
 > Libraries used: *[requests](https://docs.python-requests.org/en/latest/user/quickstart/)*, *[OpenCV](https://opencv-python.readthedocs.io/_/downloads/en/latest/pdf/)*, *[NumPy](https://numpy.org/doc/)*
 
 1. ***main*** - This starts the execution of the whole program. It was supposed to start both *input_data* and *dynamic_plot* simultaneously and then call *detection.py* when dynamic plot was either killed or ended. However, as of now (8th Dec) all three files start simultaneously (IDK why).
-2. ***input_data*** - This sends a request to the ESP Web Server; parses the data received to extract *x,y* position of the robot and writes the coordinates in a CSV file.
+2. ***input_data*** - This sends a request to the ESP Web Server; parses the data received to extract `x,y` position of the robot and writes the coordinates in a CSV file.
 3. ***writecsv*** - Writes data to a CSV file.
 4. ***dynamic_plot*** - Reads the data from the csv every *DELAY* ms and plots it to generate an animation like view using *FuncAnimation* of *matplotlib*.
 5. ***detection*** - Calls *drawfig* and *shape_from_image* to draw and analyse CSV points.
