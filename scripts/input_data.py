@@ -7,19 +7,18 @@ DELAY = 500
 PATH = 'positions.csv'
 
 def get_IP():
-    ip1 = "192.168.213.191" # kunal's esp32
-    ip = "192.168.40.38"   # usual ip address when i connect to my network _void> (might change idk)
+    ip = "192.168.245.38"   # ip address of ESP web server, replace with the actual IP address of your ESP
     if len(sys.argv) > 1:
         ip = sys.argv[1]
     return ip
 
 def connect(DELAY=1000):
-    ESP32_IP = get_IP()  # Replace with the actual IP address of your ESP32
+    ESP_IP = get_IP()  
     data = '' # format (x, y)
     x0 = y0 = 0
     while True:
         try:
-            response = requests.get(f"http://{ESP32_IP}/")
+            response = requests.get(f"http://{ESP_IP}/")
             if response.status_code == 200:
                 # status code of 200 in an HTTP response signifies a successful request
                 # the accompanying data should be available in the response body
@@ -36,8 +35,8 @@ def connect(DELAY=1000):
         time.sleep(DELAY/1000)  # Adjust the interval as needed
 
 def parse(txt:str):
-    # txt: (x, y)
-    x, y = map(int, txt[1:-1].split(', '))
+    # txt: x y theta
+    x, y = map(int, txt.split(' ')[:-1])
     return x, y
 
 if __name__ == '__main__':
