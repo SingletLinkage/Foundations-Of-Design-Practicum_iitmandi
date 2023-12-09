@@ -7,15 +7,15 @@ Hey, I'm Arka, CSE undergrad ('27) at IIT Mandi - This repository is for our Fir
 **Microcontroller:** NodeMCU ESP8266 (WiFi connectivity!)  
 
 ### Members:
-> 1. Bhumika B23036
-> 2. Diksha B23071
-> 3. Arka B23120
-> 4. Pranjal B23170
-> 5. Nitesh B23219
+1. Bhumika B23036
+2. Diksha B23071
+3. Arka B23120
+4. Pranjal B23170
+5. Nitesh B23219
 
 ### Tutors:
-> 1. Aditya Sharma B22083
-> 2. Chetan Kukreja B22097
+1. Aditya Sharma B22083
+2. Chetan Kukreja B22097
 
 ### Code Logic at Present:
 As soon as theta reaches 360 degrees, the robot stops. If the robot encounters any concave (has to be a bit too concave!) path ahead of it (distance from front sensor < threahold value), then too it'll stop. How to know if shape is concave or convex? If the robot stops before coming to its initial starting pount, its a concave shape.  
