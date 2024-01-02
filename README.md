@@ -2,7 +2,7 @@
 ### Batch 2023 - ODD Semester (Aug-Dec)
 ### Group 5
 
-Hey, I'm Arka, CSE undergrad ('27) at IIT Mandi - This repository is for our First Year FDP (Foundations of Design Practicum) project. Our problem statement involved going around some object (concave or convex) and detecting whether it was convex or not. Our robot uses *Real Time Path Plotting*, *Turning Angle Detection*, and *Computer Vision* to analyse the path followed and decide concavity.  
+Hey, I'm Arka, CSE undergrad ('27) at IIT Mandi - This repository is for our First Year FDP (Foundations of Design Practicum) project. Our problem statement involved going around some object (concave or convex) and detecting whether it was convex or not. Our robot uses *Real Time Path Plotting*, *Turning Angle Detection*, and *Computer Vision* to analyse the path followed and decide concavity. Pleae do not copy and paste the code directly from here, try to learn the logic and then implement it by yourself. For questions/suggestions feel free to contact me! (Discord: _qchaos)
 **Sensors:** HC-SR04 ultrasonic sensor  
 **Microcontroller:** NodeMCU ESP8266 (WiFi connectivity!)  
 
