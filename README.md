@@ -35,7 +35,7 @@ This code uses time interval between two successive right/left turn calls to det
 1. ***main*** - This starts the execution of the whole program. It was supposed to start both *input_data* and *dynamic_plot* simultaneously and then call *detection.py* when dynamic plot was either killed or ended. However, as of now (8th Dec) all three files start simultaneously (IDK why).
 2. ***input_data*** - This sends a request to the ESP Web Server; parses the data received to extract `x,y` position of the robot and writes the coordinates in a CSV file.
 3. ***writecsv*** - Writes data to a CSV file.
-4. ***dynamic_plot*** - Reads the data from the csv every *DELAY* ms and plots it to generate an animation like view using *FuncAnimation* of *matplotlib*.
+4. ***dynamic_plot*** - Reads the data from the csv every `DELAY` ms and plots it to generate an animation like view using *FuncAnimation* of *matplotlib*.
 5. ***detection*** - Calls *drawfig* and *shape_from_image* to draw and analyse CSV points.
 6. ***drawfig*** - Constructs the final image of object from the (x,y) coordinated saved in CSV file and saves the generated image in a file.
 7. ***shape_from_image*** - Uses OpenCV to generate contours and passes that data to *shape_from_vertices*. Then using the returned array of corner points, it overlays the shape and the corner point coordinated on the shape itself.
